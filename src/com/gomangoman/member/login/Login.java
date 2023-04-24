@@ -14,9 +14,9 @@ public class Login {
 	public void login () {
       label :
 	while(true) {
-		System.out.println("아이디를 입력주세요 : ");
+		System.out.print("아이디를 입력주세요 : ");
 		String id = sc.nextLine();
-		System.out.println("비밀번호를 입력해주세요 : ");
+		System.out.print("비밀번호를 입력해주세요 : ");
 		String pwd = sc.nextLine();
 		
 		if(id.equals(suspervisor.getId())) {
