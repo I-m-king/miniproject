@@ -1,0 +1,5 @@
+package com.gomangoman.inventory;
+
+public class ProductDTO {
+
+}
