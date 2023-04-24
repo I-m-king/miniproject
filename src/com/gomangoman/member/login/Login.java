@@ -1,4 +1,5 @@
 package com.gomangoman.member.login;
+<<<<<<< HEAD
 
 import java.util.Scanner;
 
@@ -44,3 +45,9 @@ public class Login {
       
 
 
+=======
+
+public class Login {
+
+}
+>>>>>>> refs/remotes/origin/duckdin
