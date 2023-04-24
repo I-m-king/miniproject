@@ -1,5 +1,5 @@
 package com.gomangoman.member.login;
 
-public class login {
+public class Login {
 
 }
