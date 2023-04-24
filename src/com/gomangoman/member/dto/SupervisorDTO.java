@@ -2,7 +2,7 @@ package com.gomangoman.member.dto;
 
 public class SupervisorDTO {
 	private String id = "gomangoman999";
-	private String pwd = "gogilrgogilr";
+	private String pwd = "gogirlgogirl";
 	public SupervisorDTO() {
 	}
 	public SupervisorDTO(String id, String pwd) {
