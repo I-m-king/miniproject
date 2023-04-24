@@ -26,10 +26,12 @@ public class Login {
 			char c = sc.next().charAt(0);
 			if(c == 'y' || c == 'Y') {
 				break;
-			}
-			if(c == 'c' || c == 'C') {
+			}else {
 				break label;
 			}
+				
+			
+			
 	}
      
 	
