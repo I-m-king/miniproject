@@ -30,8 +30,8 @@ public class StartMenu {
 			sc.nextLine();
 			
 			switch(num) {
-				case 1 : log.login(); /*im.menu();*/break;
-				case 2 : /*vis.guest();*/ break;
+				case 1 : log.login(); break;
+				case 2 : vis.guest(); break;
 				case 3 : System.out.print("나가시겠습니까? (Y/N) : ");
 				char ch = sc.next().charAt(0);
 				if(ch == 'y' || ch == 'Y') {
