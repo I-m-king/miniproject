@@ -51,7 +51,7 @@ public class Visitor {
 			switch(num) {
 				case 1 : buyProduct(); break;
 				case 2 : 
-				case 3 : 
+				case 3 : gu.toString();
 				case 4 : System.out.print("나가시겠습니까? (Y/N) : ");
 							char ch = sc.next().charAt(0);
 							sc.nextLine();
