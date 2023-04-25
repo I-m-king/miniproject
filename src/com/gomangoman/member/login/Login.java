@@ -1,5 +1,4 @@
 package com.gomangoman.member.login;
-<<<<<<< HEAD
 
 import java.util.Scanner;
 
@@ -14,40 +13,30 @@ public class Login {
 	
 	public void login () {
       label :
-	while(true) {
-		System.out.print("아이디를 입력주세요 : ");
-		String id = sc.nextLine();
-		System.out.print("비밀번호를 입력해주세요 : ");
-		String pwd = sc.nextLine();
+    	  while(true) {
+    		  System.out.print("아이디를 입력주세요 : ");
+    		  String id = sc.nextLine();
+    		  System.out.print("비밀번호를 입력해주세요 : ");
+    		  String pwd = sc.nextLine();
 		
-		if(suspervisor.equals(id)&&suspervisor.equals(pwd)) {
-			System.out.println("로그인에 성공했습니다.");
-		}else
-			System.out.print("로그인에 실패했습니다 다시 입력하시겠습니까? Y/N");
-			char c = sc.next().charAt(0);
-			if(c == 'y' || c == 'Y') {
-				break;
-			}else {
-				break label;
-			}
-				
+    		  if(suspervisor.equals(id)&&suspervisor.equals(pwd)) {
+    			  System.out.println("로그인에 성공했습니다.");
+    		  }else
+    			  System.out.print("로그인에 실패했습니다 다시 입력하시겠습니까? Y/N");
+    		  char c = sc.next().charAt(0);
+    		  if(c == 'y' || c == 'Y') {
+    			  break;
+    		  }else {
+    			  break label;
+    		  }
 			
-			
-	}
+    	  }
      
-	
-	
 	}
-		
 	
-
 }
       
 
 
-=======
 
-public class Login {
 
-}
->>>>>>> refs/remotes/origin/duckdin
