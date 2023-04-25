@@ -29,7 +29,7 @@ public class Visitor {
 		int money = sc.nextInt();
 		sc.nextLine();
 		
-		gu = new GuestDTO(name, money, money);
+		gu = new Gu
 		
 		menu();		
 	}
