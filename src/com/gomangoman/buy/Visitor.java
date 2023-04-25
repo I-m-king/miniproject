@@ -29,7 +29,7 @@ public class Visitor {
 		int money = sc.nextInt();
 		sc.nextLine();
 		
-		gu = new Gu
+		gu = new GuestDTO(name, number, money);
 		
 		menu();		
 	}
@@ -96,6 +96,7 @@ public class Visitor {
 					
 					if(plist.get(i).getAmount() < num) {
 						System.out.println("수량이 부족합니다. 죄송합니다 :) ");
+						break buy;
 					}
 					
 					System.out.println(plist.get(i).getPrice() * num + "원 입니다.");
