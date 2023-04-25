@@ -17,7 +17,7 @@ public class Login {
 		int count = 0;
 		label :
     
-		while(count>=5) {
+		while(count>5) {
 		System.out.print("아이디를 입력주세요 : ");
 		String id = sc.nextLine();
 		System.out.print("비밀번호를 입력해주세요 : ");
@@ -29,7 +29,7 @@ public class Login {
 			System.out.print("로그인에 실패했습니다 다시 입력하시겠습니까? Y/N");
 			char c = sc.next().charAt(0);
 			sc.nextLine();
-			for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < count; i++) {
 				System.out.println(i + 1 + "번 실패하였습니다. 5번 틀릴시 프로그램이 종료됩니다.");
 			}
 			count++;
