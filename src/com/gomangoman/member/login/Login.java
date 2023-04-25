@@ -3,11 +3,13 @@ package com.gomangoman.member.login;
 
 import java.util.Scanner;
 
+import com.gomangoman.inventory.InventoryManager;
 import com.gomangoman.member.dto.SupervisorDTO;
 
 public class Login {
 	
 	Scanner sc = new Scanner(System.in);
+	InventoryManager im = new InventoryManager();
 	
 	SupervisorDTO suspervisor = new SupervisorDTO();
 	int count = 0;
@@ -25,6 +27,8 @@ public class Login {
 		
 		if(id.equals(suspervisor.getId())&&pwd.equals(suspervisor.getPwd())) {
 			System.out.println("로그인에 성공했습니다.");
+			im.menu();
+			break label;
 		}else
 			
 			System.out.print("로그인에 실패했습니다 다시 입력하시겠습니까? Y/N : ");
