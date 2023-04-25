@@ -29,7 +29,6 @@ public class Login {
 			System.out.println("로그인에 성공했습니다.");
 			im.menu();
 			break label;
-			
 		}else
 			
 			System.out.print("로그인에 실패했습니다 다시 입력하시겠습니까? Y/N : ");
