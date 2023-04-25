@@ -1,4 +1,8 @@
 package com.gomangoman.member.login;
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/jiho's_work
 
 import java.util.Scanner;
 
@@ -49,6 +53,10 @@ public class Login {
 }
 
 
+<<<<<<< HEAD
 
 
 
+=======
+
+>>>>>>> refs/remotes/origin/jiho's_work
