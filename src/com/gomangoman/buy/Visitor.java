@@ -103,7 +103,6 @@ public class Visitor {
 			System.out.println("포인트가 10% 적립 되었습니다! \n현재 포인트는" + gu.getPoint() + " 포인트 입니다!");
 			break buy;
 			
-			
 		}
 		
 	}
