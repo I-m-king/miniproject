@@ -67,6 +67,7 @@ public class InventoryManager {
 			
 			if(plist.get(i) != null) {
 				System.out.println((i + 1) + " : " +plist.get(i));
+				
 			}
 		}
 	}
