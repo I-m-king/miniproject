@@ -13,6 +13,8 @@ public class Visitor {
 	GuestDTO gu = null;
 	InventoryManager im = new InventoryManager();
 	List<ProductDTO> plist = InventoryManager.plist;
+	List<ProductDTO> blist = null;
+	ProductDTO pd = null;
 	
 	public Visitor() {}
 	
@@ -40,7 +42,7 @@ public class Visitor {
 		while(true) {
 			
 			System.out.println("1. 상품 구매하기");
-			System.out.println("2. 구매한 상품 환불하기");
+			System.out.println("2. 포인트로 구매하기");
 			System.out.println("3. 내 정보 조회하기");
 			System.out.println("4. 나가기");
 			
@@ -50,8 +52,8 @@ public class Visitor {
 			
 			switch(num) {
 				case 1 : buyProduct(); break;
-				case 2 : 
-				case 3 : 
+				case 2 : usePoint(); break;
+				case 3 : System.out.println(gu.toString()); break;
 				case 4 : System.out.print("나가시겠습니까? (Y/N) : ");
 							char ch = sc.next().charAt(0);
 							sc.nextLine();
@@ -74,59 +76,79 @@ public class Visitor {
 			
 			im.printlist();
 			
-			System.out.print("구매를 원하시는 메뉴 명을 입력해주세요 : ");
-			String menu = sc.nextLine();
-			for(int i = 0; i < plist.size(); i++) {
-				
-				if(!plist.get(i).getName().equals(menu)) {
-					System.out.println("원하시는 메뉴는 저희 편의점에 없습니다.");
-					System.out.println("죄송합니다 :) ");
-					break buy;
-				}
-				
-				System.out.println(plist.get(i).getPrice() + "원 입니다.");
-				System.out.print("구매하시겠습니까? (Y/N) : ");
-				char ch = sc.next().charAt(0);
-				sc.nextLine();
-				
-				if(ch == 'Y' || ch == 'y') {
-					System.out.print("구매를 원하시는 수량을 입력해주세요 : ");
-					int num = sc.nextInt();
-					sc.nextLine();
-					
-					if(plist.get(i).getAmount() < num) {
-						System.out.println("수량이 부족합니다. 죄송합니다 :) ");
-						break buy;
-					}
-					
-					System.out.println(plist.get(i).getPrice() * num + "원 입니다.");
-					System.out.print("구매하시겠습니까? (Y/N) : ");
-					
-					char ch1 = sc.next().charAt(0);
-					sc.nextLine();
-					
-					if(ch1 == 'y' || ch1 == 'Y') {
-						
-						if(plist.get(i).getPrice() * num > gu.getMoney()) {
-							System.out.println("죄송합니다. 잔액부족이에요 :) ");
-						}
-						
-						System.out.println("성공적으로 구매하셨어요!");
-						gu.setMoney(gu.getMoney() - plist.get(i).getPrice() * num);
-						gu.setPoint(gu.getPoint() + plist.get(i).getPrice() * num * 0.1);
-						plist.get(i).setAmount(plist.get(i).getAmount() - num);
-						
-						break buy;
-						
-					} else {
-						break buy;
-					}
-				} else {
-					break buy;
-				}
+			System.out.print("구매를 원하시는 메뉴 번호를 입력해주세요 : ");
+			int menu = sc.nextInt();
+			sc.nextLine();
+			
+			if(plist.get(menu - 1) == null) {
+				System.out.println("지금 입력하신 번호에 맞는 메뉴가 없습니다.");
+				break buy;
 			}
+			
+			System.out.print("구매를 원하시는 물품의 수량을 입력해주세요 : ");
+			int amount = sc.nextInt();
+			sc.nextLine();
+			
+			if(plist.get(menu - 1).getAmount() < amount) {
+				System.out.println("현재 재고가 없어서 주문이 불가능합니다.");
+				break buy;
+			}
+			
+			if(plist.get(menu - 1).getPrice() * amount > gu.getMoney()) {
+				System.out.println("잔액이 부족하여 구매를 진행할 수 없습니다.");
+				break buy;
+			}
+			gu.setPoint(plist.get(menu - 1).getPrice() * amount * 0.1 + gu.getPoint());
+			gu.setMoney(gu.getMoney() - plist.get(menu - 1).getPrice() * amount);
+			plist.get(menu - 1).setAmount(plist.get(menu -1).getAmount() - amount);
+			System.out.println(plist.get(menu - 1).getPrice() * amount + "원 입니다!");
+			System.out.println("성공적으로 구매하셨습니다!");
+			System.out.println("포인트가 10% 적립 되었습니다! \n현재 포인트는" + gu.getPoint() + " 포인트 입니다!");
+//			pd = new ProductDTO(plist.get(menu - 1).getName(), amount, plist.get(menu - 1).getPrice());
+//			blist.add(pd);
+			break buy;
+			
 		}
 		
 	}
+	
+	public void usePoint() {
+		point :
+		while(true) {
+			
+			im.printlist();
+			
+			System.out.print("포인트로 구매하실 메뉴 번호를 선택해주세요 : ");
+			int p = sc.nextInt();
+			sc.nextLine();
+			
+			if(plist.get(p - 1) == null) {
+				System.out.println("지금 입력하신 번호에 맞는 메뉴가 없습니다.");
+				break point;
+			}
+			
+			System.out.print("구매를 원하시는 물품의 수량을 입력해주세요 : ");
+			int amount = sc.nextInt();
+			sc.nextLine();
+			
+			if(plist.get(p - 1).getAmount() < amount) {
+				System.out.println("현재 재고가 없어서 주문이 불가능합니다.");
+				break point;
+			}
+			
+			if(plist.get(p - 1).getPrice() * amount > gu.getPoint()) {
+				System.out.println("포인트 부족하여 구매를 진행할 수 없습니다.");
+				break point;
+			}
+			
+			System.out.println((plist.get(p - 1).getPrice() * amount) + "포인트를 사용합니다.");
+			gu.setPoint(gu.getPoint() - plist.get(p - 1).getPrice() * amount);
+			plist.get(p - 1).setAmount(plist.get(p -1).getAmount() - amount);
+			System.out.println("성공적으로 구매하셨습니다!");
+			System.out.println("현재 포인트는" + gu.getPoint() + " 포인트 입니다!");
+			break point;
+		}
+	}
+	
 
 }
