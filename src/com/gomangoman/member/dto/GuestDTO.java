@@ -57,7 +57,7 @@ public class GuestDTO {
 	}
 	@Override
 	public String toString() {
-		return "성함은 " + name + "입니다." + ", 전화번호 뒷자리는 " + phone + "입니다" + "갖고있는 돈은" + money + "입니다" +"적립된 포인트는" + point +" 입니다";
+		return "성함 : " + name +  ", 전화번호 뒷자리 : " + phone + "\n갖고있는 돈은 : " + money +", 적립된 포인트는" + point;
 	}
 	
 	
