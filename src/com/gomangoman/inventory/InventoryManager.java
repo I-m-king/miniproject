@@ -29,7 +29,7 @@ public class InventoryManager {
 							
 							break;
 						case 3 : 
-							System.out.println("정말로 나가시겠습니까? y/n");
+							System.out.print("정말로 나가시겠습니까? (Y/N) : ");
 							char y = sc.next().charAt(0);
 							if(y == 'Y' || y == 'y') {
 								break label;
@@ -66,7 +66,7 @@ public class InventoryManager {
 		for(int i = 0; i < plist.size(); i++) {
 			
 			if(plist.get(i) != null) {
-				System.out.println((i + 1) + " : " +plist.get(i));
+				System.out.println((i + 1) + " : " + plist.get(i));
 				
 			}
 		}
