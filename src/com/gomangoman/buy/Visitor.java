@@ -1,5 +1,6 @@
 package com.gomangoman.buy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ public class Visitor {
 	GuestDTO gu = null;
 	InventoryManager im = new InventoryManager();
 	List<ProductDTO> plist = InventoryManager.plist;
-	List<ProductDTO> blist = null;
+	List<ProductDTO> blist = new ArrayList<>();
 	ProductDTO pd = null;
 	
 	public Visitor() {}
@@ -44,7 +45,8 @@ public class Visitor {
 			System.out.println("1. 상품 구매하기");
 			System.out.println("2. 포인트로 구매하기");
 			System.out.println("3. 내 정보 조회하기");
-			System.out.println("4. 나가기");
+			System.out.println("4. 환불하기");
+			System.out.println("5. 나가기");
 			
 			System.out.print("원하시는 메뉴를 선택해주세요 : ");
 			int num = sc.nextInt();
@@ -54,7 +56,8 @@ public class Visitor {
 				case 1 : buyProduct(); break;
 				case 2 : usePoint(); break;
 				case 3 : System.out.println(gu.toString()); break;
-				case 4 : System.out.print("나가시겠습니까? (Y/N) : ");
+				case 4 : refund(); break;
+				case 5 : System.out.print("나가시겠습니까? (Y/N) : ");
 							char ch = sc.next().charAt(0);
 							sc.nextLine();
 							if(ch == 'y' || ch == 'Y') {
@@ -104,8 +107,9 @@ public class Visitor {
 			System.out.println(plist.get(menu - 1).getPrice() * amount + "원 입니다!");
 			System.out.println("성공적으로 구매하셨습니다!");
 			System.out.println("포인트가 10% 적립 되었습니다! \n현재 포인트는" + gu.getPoint() + " 포인트 입니다!");
-//			pd = new ProductDTO(plist.get(menu - 1).getName(), amount, plist.get(menu - 1).getPrice());
-//			blist.add(pd);
+			pd = new ProductDTO(plist.get(menu - 1).getName(), amount, plist.get(menu - 1).getPrice());
+			
+			blist.add(pd);
 			break buy;
 			
 		}
@@ -149,6 +153,55 @@ public class Visitor {
 			break point;
 		}
 	}
-	
 
+	public void refund() {
+		
+		re:
+		while(true) {
+			
+			printRefund();
+			
+			System.out.print("환불을 원하는 메뉴 번호를 입력해주세요 : ");
+			int r = sc.nextInt();
+			sc.nextLine();
+			
+			if(blist.get(r - 1) == null) {
+				System.out.println("잘못 입력하신 것 같아요!");
+				break re;
+			}
+			
+			System.out.print("정말 환불하시겠습니까? (Y/N) : ");
+			char ch = sc.next().charAt(0);
+			sc.nextLine();
+			
+			if(ch == 'y' || ch == 'Y') {
+				System.out.println("환불 되었습니다!");
+				gu.setMoney(gu.getMoney() + blist.get(r - 1).getPrice() * blist.get(r - 1).getAmount());
+				gu.setPoint(gu.getPoint() - blist.get(r - 1).getPrice() * blist.get(r - 1).getAmount() * 0.1);
+				
+				for(int i = 0; i < plist.size(); i++) {
+					if(plist.get(i).getName().equals(blist.get(r - 1).getName())) {
+						plist.get(i).setAmount(plist.get(i).getAmount() + blist.get(r - 1).getAmount());
+					}
+				}
+				
+				blist.remove(r - 1);
+				
+				break re;
+			}
+			break re;
+		}
+		
+		
+		
+	}
+	
+	public void printRefund() {
+		
+		for(int i = 0; i < blist.size(); i++) {
+			if(blist.get(i) != null) {
+				System.out.println("[" + (i + 1) + "]" + blist.get(i));
+			}
+		}
+	}
 }
