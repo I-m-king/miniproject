@@ -156,6 +156,10 @@ public class Visitor {
 
 	public void refund() {
 		
+		System.out.println("포인트로 구매하신 물품은 환불이 불가능합니다.");
+		System.out.println("참고 바랍니다.");
+		System.out.println();
+		
 		re:
 		while(true) {
 			
@@ -177,7 +181,11 @@ public class Visitor {
 			if(ch == 'y' || ch == 'Y') {
 				System.out.println("환불 되었습니다!");
 				gu.setMoney(gu.getMoney() + blist.get(r - 1).getPrice() * blist.get(r - 1).getAmount());
-				gu.setPoint(gu.getPoint() - blist.get(r - 1).getPrice() * blist.get(r - 1).getAmount() * 0.1);
+				if(gu.getPoint() > blist.get(r - 1).getPrice() * blist.get(r - 1).getAmount()) {
+					gu.setPoint(gu.getPoint() - blist.get(r - 1).getPrice() * blist.get(r - 1).getAmount() * 0.1);
+				} else {
+					gu.setPoint(0);
+				}
 				
 				for(int i = 0; i < plist.size(); i++) {
 					if(plist.get(i).getName().equals(blist.get(r - 1).getName())) {
