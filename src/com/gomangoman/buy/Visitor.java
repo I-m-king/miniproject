@@ -156,14 +156,21 @@ public class Visitor {
 
 	public void refund() {
 		
-		System.out.println("포인트로 구매하신 물품은 환불이 불가능합니다.");
-		System.out.println("참고 바랍니다.");
-		System.out.println();
 		
 		re:
 		while(true) {
 			
+			if(blist.size() == 0) {
+				
+				System.out.println("환불할 메뉴가 없습니다.");
+				break re;
+			}
+			
 			printRefund();
+			
+			System.out.println("포인트로 구매하신 물품은 환불이 불가능합니다.");
+			System.out.println("참고 바랍니다.");
+			System.out.println();
 			
 			System.out.print("환불을 원하는 메뉴 번호를 입력해주세요 : ");
 			int r = sc.nextInt();
